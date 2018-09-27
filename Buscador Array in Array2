@@ -1,0 +1,60 @@
+#include <iostream>
+#include<string.h>
+
+bool Buscar(char *ArrayMax, char *ArrayMin);
+
+int main()
+{
+    
+char array[]="Lenguaje de programacion ITM";
+char array2[]="ITM";
+bool Resultado;
+Resultado = Buscar(array, array2);
+    if(Resultado)
+        std::cout<<"Encontro el texto"<<std::endl;
+    else
+        std::cout<<"NO Encontro el texto"<<std::endl;
+}
+
+bool Buscar(char *ArrayMax, char *ArrayMin)
+{
+int longitudMax = strlen(ArrayMax);
+int longitudMin = strlen(ArrayMin);
+int contador=0;
+int auxi=0;
+int auxj=0;
+    for(int i=0; i<longitudMin; i++)
+    {
+     auxi=i;
+        for(int j=0; j<longitudMax; j++)
+        {
+         auxj=j;
+           if(ArrayMin[i]==ArrayMax[j])
+           {
+            contador=1;
+            j=j+1;
+            i=i+1;
+            if (contador==longitudMin)
+            return 1;
+                while(contador!=0 && longitudMax!=j)
+                {
+                    if(ArrayMin[i]==ArrayMax[j])
+                    {
+                     contador=contador+1;
+                     j=j+1;
+                     i=i+1;
+                        if (contador==longitudMin)
+                        return 1;
+                    }
+                    else
+                    {
+                     contador=0;
+                     i=auxi;
+                     j=auxj;
+                    }
+                }
+            }
+        }
+    }
+return 0;
+}
